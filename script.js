@@ -6,11 +6,18 @@ createGrid(n);
 let rowcol = document.querySelector('.rowcol');
 rowcol.addEventListener("click", function() {
     clearGrid();
-    n = prompt("How many rows per side?");
+    n = Number(prompt("How many rows per side?"));
     if (n < 1 || n > 100) {
         alert("ERROR - Enter an integer betweeen 1 to 100");
     }
-    createGrid(n);
+    if (Number.isInteger(n)) {
+        createGrid(n);
+    }
+    else {
+        alert("ERROR - Enter an integer betweeen 1 to 100");      
+    }
+    
+    
     
 })
 
