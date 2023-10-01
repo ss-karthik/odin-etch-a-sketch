@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.row-container {
+    display: flex;
+}
+
+
+.cell {
+    border: 1px solid black;
+    background-color: grey;
+}
