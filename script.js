@@ -15,6 +15,7 @@ monocolorButton.addEventListener('click', () => {
     randomColor = false;
     grayscale = false;
     monocolor = true;
+    clearColors();
 })
 
 rainbowButton.addEventListener('click', () => {
@@ -22,6 +23,7 @@ rainbowButton.addEventListener('click', () => {
     randomColor = true;
     grayscale = false;
     monocolor = false;
+    clearColors();
 })
 
 grayscaleButton.addEventListener('click', () => {
@@ -29,6 +31,7 @@ grayscaleButton.addEventListener('click', () => {
     randomColor = false;
     grayscale = true;
     monocolor = false;
+    clearColors();
 })
 
 
@@ -74,9 +77,13 @@ function createGrid(n) {
 
 let clearColor = document.querySelector('.clear-color');
 clearColor.addEventListener('click', function() {
+    clearColors();
+})
+
+function clearColors() {
     clearGrid();
     createGrid(n);
-})
+}
 
 function clearGrid() {
     let rowContainer = document.querySelectorAll('.row-container');
@@ -84,6 +91,7 @@ function clearGrid() {
         rowContainer[i].remove();
     }
 }
+
 
 function changeColor(cell) {
     if (randomColor) {
@@ -93,7 +101,17 @@ function changeColor(cell) {
         cell.style.backgroundColor = 'gray';
     }
     else if (grayscale) {
-        cell.style.backgroundColor = 'grey';
+        if (cell.style.opacity === '') {
+            cell.style.backgroundColor = 'black';
+            cell.style.opacity = '0.1';
+        }
+        else {
+            let currentOpacity = parseFloat(cell.style.opacity);
+            if (currentOpacity < 1.0) {
+                currentOpacity += 0.1;
+                cell.style.opacity = currentOpacity.toString();
+            }
+        }
     }
 }
 
