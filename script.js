@@ -6,6 +6,31 @@ let randomColor = true;
 let grayscale = false;
 let monocolor = false;
 
+let monocolorButton = document.querySelector('.monocolor');
+let rainbowButton = document.querySelector('.rainbow');
+let grayscaleButton = document.querySelector('.grayscale');
+
+monocolorButton.addEventListener('click', () => {
+    
+    randomColor = false;
+    grayscale = false;
+    monocolor = true;
+})
+
+rainbowButton.addEventListener('click', () => {
+    
+    randomColor = true;
+    grayscale = false;
+    monocolor = false;
+})
+
+grayscaleButton.addEventListener('click', () => {
+    
+    randomColor = false;
+    grayscale = true;
+    monocolor = false;
+})
+
 
 let rowcol = document.querySelector('.rowcol');
 rowcol.addEventListener("click", function() {
@@ -20,9 +45,6 @@ rowcol.addEventListener("click", function() {
     else {
         alert("ERROR - Enter an integer betweeen 1 to 100");      
     }
-    
-    
-    
 })
 
 function createGrid(n) {
@@ -50,6 +72,12 @@ function createGrid(n) {
     }
 }
 
+let clearColor = document.querySelector('.clear-color');
+clearColor.addEventListener('click', function() {
+    clearGrid();
+    createGrid(n);
+})
+
 function clearGrid() {
     let rowContainer = document.querySelectorAll('.row-container');
     for (let i = 0; i < rowContainer.length; i++) {
@@ -60,6 +88,12 @@ function clearGrid() {
 function changeColor(cell) {
     if (randomColor) {
         cell.style.backgroundColor = randomColorGenerator();
+    }
+    else if (monocolor) {
+        cell.style.backgroundColor = 'gray';
+    }
+    else if (grayscale) {
+        cell.style.backgroundColor = 'grey';
     }
 }
 
