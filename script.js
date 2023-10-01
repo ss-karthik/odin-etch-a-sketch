@@ -2,6 +2,10 @@ let container = document.getElementById("container");
 let n = 4;
 createGrid(n);
 
+let randomColor = true;
+let grayscale = false;
+let monocolor = false;
+
 
 let rowcol = document.querySelector('.rowcol');
 rowcol.addEventListener("click", function() {
@@ -36,6 +40,11 @@ function createGrid(n) {
             cell.classList.add("cell");
             cell.style.width = size.toString() + "px";
             cell.style.height = size.toString() + "px";
+
+            cell.addEventListener('mouseover', function() {
+                changeColor(cell);
+            });
+
             rowContainer.appendChild(cell);
         }
     }
@@ -46,4 +55,16 @@ function clearGrid() {
     for (let i = 0; i < rowContainer.length; i++) {
         rowContainer[i].remove();
     }
+}
+
+function changeColor(cell) {
+    if (randomColor) {
+        cell.style.backgroundColor = randomColorGenerator();
+    }
+}
+
+function randomColorGenerator() {
+    let colors = ['#F94144', '#F3722C', '#F8961E', '#F9844A', '#F9C74F', '#90BE6D', '#43AA8B', '#4D908E', '#577590', '#277DA1'];
+    let random = Math.floor(Math.random() * 10);
+    return colors[random];
 }
